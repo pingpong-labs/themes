@@ -1,0 +1,12 @@
+{
+	"name": "{{name}}",
+	"description": "{{name}}",
+	"keywords": ["simple", "pingpong", "laravel"],
+	"license": "",
+    "authors": [
+        {
+            "name": "",
+            "email": ""
+        }
+    ]
+}
