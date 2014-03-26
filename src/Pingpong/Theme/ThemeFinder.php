@@ -1,7 +1,7 @@
 <?php namespace Pingpong\Theme;
 
 use Illuminate\Support\Str;
-use Simple\Theme\ThemePresenter;
+use Pingpong\Theme\ThemePresenter;
 use Illuminate\Foundation\Application;
 
 class ThemeFinder

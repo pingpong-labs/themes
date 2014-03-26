@@ -1,6 +1,6 @@
 <?php namespace Pingpong\Theme;
 
-use Simple\Interfaces\SubscribleInterface;
+use Pingpong\Interfaces\SubscribleInterface;
 
 class ThemeEventHandlers implements SubscribleInterface
 {
