@@ -1,6 +1,6 @@
 {
     "name": "pingpong/theme",
-    "description": "Laravel 4 - Themes Management",
+    "description": "Laravel 4 - Simple Themes",
     "keywords":["theme", "themes", "pingpong", "laravel"],
     "license":"MIT",
     "authors": [
