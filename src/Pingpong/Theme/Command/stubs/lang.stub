@@ -1,0 +1,9 @@
+<?php
+
+return array(
+	'key'	=>	'value',
+	'name'	=>	[function()
+	{
+		return '{{name}}';
+	}]
+);
