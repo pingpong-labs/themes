@@ -7,6 +7,11 @@ use Symfony\Component\Console\Input\InputArgument;
 
 class ThemeMakeCommand extends Command {
 
+	/**
+	 * The folders will be created.
+	 *
+	 * @var array
+	 */
 	protected $folders = [
 		'assets/',
 		'assets/css/',
@@ -18,6 +23,11 @@ class ThemeMakeCommand extends Command {
 		'views/',
 	];
 
+	/**
+	 * The files will be created.
+	 *
+	 * @var array
+	 */
 	protected $files = [
 		'theme.json',
 		'config/theme.php',
@@ -28,6 +38,11 @@ class ThemeMakeCommand extends Command {
 		'views/template.blade.php',
 	];
 
+	/**
+	 * The stubs replacement.
+	 *
+	 * @var array
+	 */
 	protected $stubs = [
 		'json.stub',
 		'config.stub',

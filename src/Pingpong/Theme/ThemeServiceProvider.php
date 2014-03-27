@@ -2,6 +2,7 @@
 
 use Illuminate\Support\ServiceProvider;
 use Pingpong\Theme\Command\ThemeMakeCommand;
+use Pingpong\Theme\Command\ThemePublishCommand;
 
 class ThemeServiceProvider extends ServiceProvider {
 
@@ -43,7 +44,11 @@ class ThemeServiceProvider extends ServiceProvider {
 		{
 			return new ThemeMakeCommand;
 		});
-		$this->commands('theme.generator');
+		$this->app['theme.publisher'] = $this->app->share(function($app)
+		{
+			return new ThemePublishCommand;
+		});
+		$this->commands('theme.generator', 'theme.publisher');
 		$this->registerHelpers();
 	}
 
