@@ -1,5 +1,5 @@
 <?php
 
 return [
-	'path'	=>	public_path() . '/.themes/'
+	'path'	=>	public_path() . '/themes/'
 ];

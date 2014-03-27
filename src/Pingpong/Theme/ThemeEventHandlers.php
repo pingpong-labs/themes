@@ -5,12 +5,12 @@ use Pingpong\Interfaces\SubscribleInterface;
 class ThemeEventHandlers implements SubscribleInterface
 {
 	/**
-	 * @var \Simple\Theme\Theme
+	 * @var \Pingpong\Theme\Theme
 	 */
 	protected $theme;
 
 	/**
-	 * @var \Simple\Theme\Theme
+	 * @var \Pingpong\Theme\Theme
 	 */
 	public function __construct(Theme $theme) {
 		$this->theme = $theme;

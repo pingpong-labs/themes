@@ -6,12 +6,12 @@ use Illuminate\Foundation\Application;
 class ThemePresenter
 {
 	/**
-	 * @var Illuminate\Foundation\Application
+	 * @var \Illuminate\Foundation\Application
 	 */
 	protected $app;
 
 	/**
-	 * @var Illuminate\Filesystem\Filesystem
+	 * @var \Illuminate\Filesystem\Filesystem
 	 */
 	protected $file;
 
