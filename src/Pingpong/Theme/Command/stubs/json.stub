@@ -1,7 +1,7 @@
 {
 	"name": "{{name}}",
 	"description": "{{name}}",
-	"keywords": ["simple", "pingpong", "laravel"],
+	"keywords": ["simple", "{{name}}", "pingpong", "laravel"],
 	"license": "",
     "authors": [
         {
