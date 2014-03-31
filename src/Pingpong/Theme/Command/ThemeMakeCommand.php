@@ -89,7 +89,7 @@ class ThemeMakeCommand extends Command {
 		{
 			return $this->error("Theme [$this->name] already exists.");
 		}
-		return $this->generate($this->name);
+		return $this->generate();
 	}
 
 	/**
