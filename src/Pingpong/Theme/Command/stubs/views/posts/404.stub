@@ -1,0 +1,9 @@
+@extends('{{name}}::layouts.full-width')
+
+@section('content')
+		
+	<h1>
+		Post or page not found
+	</h1>	
+
+@endsection

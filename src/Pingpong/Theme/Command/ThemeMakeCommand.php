@@ -21,6 +21,10 @@ class ThemeMakeCommand extends Command {
 		'lang/en/',
 		'start/',
 		'views/',
+		'views/partials/',
+		'views/layouts/',
+		'views/posts/',
+		'views/search/',
 	];
 
 	/**
@@ -32,10 +36,28 @@ class ThemeMakeCommand extends Command {
 		'theme.json',
 		'config/theme.php',
 		'lang/en/theme.php',
+		// assets
+		'assets/css/style.css',
+		// global file
 		'start/global.php',
 		'start/helpers.php',
+		// index file
 		'views/index.blade.php',
-		'views/template.blade.php',
+		// layouts
+		'views/layouts/master.blade.php',
+		'views/layouts/full-width.blade.php',
+		// partials
+		'views/partials/footer.blade.php',
+		'views/partials/header.blade.php',
+		'views/partials/sidebar.blade.php',
+		'views/partials/posts.blade.php',
+		// posts
+		'views/posts/404.blade.php',
+		'views/posts/single.blade.php',
+		// search
+		'views/search/form.blade.php',
+		'views/search/index.blade.php',
+		'views/search/results.blade.php',
 	];
 
 	/**
@@ -47,10 +69,28 @@ class ThemeMakeCommand extends Command {
 		'json.stub',
 		'config.stub',
 		'lang.stub',
+		// assets
+		'css/style.stub',
+		// start folder
 		'global.stub',
-		'helpers.stub',
+		'helpers.stub',		
+		// index file
 		'views/index.stub',
-		'views/template.stub',
+		// layouts
+		'views/layouts/master.stub',
+		'views/layouts/full-width.stub',
+		// partials
+		'views/partials/footer.stub',
+		'views/partials/header.stub',
+		'views/partials/sidebar.stub',
+		'views/partials/posts.stub',
+		// posts
+		'views/posts/404.stub',
+		'views/posts/single.stub',
+		// search
+		'views/search/form.stub',
+		'views/search/index.stub',
+		'views/search/results.stub',
 	];
 
 	/**

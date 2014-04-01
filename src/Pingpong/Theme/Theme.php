@@ -16,7 +16,7 @@ class Theme implements Countable
 	 *
 	 * @var string|mixed $current.
 	 */
-	protected $current = 'simple';
+	protected $current = 'white';
 
 	public function __construct(Application $app) {
 		$this->app = $app;

@@ -1,0 +1,19 @@
+	<!-- Header -->
+	<header class="container header">
+		<div class="row">
+			<div class="col-md-9 col-sm-8">
+			 	<!-- Top Menu -->
+				<ul class="nav nav-pills">
+					{{ $menu }}
+				</ul>
+			</div><!-- col-md-9 -->
+			<div class="col-md-3 col-sm-4">
+				<!-- Search Form -->
+				{{ Form::open(['role' => 'search', 'method' => 'GET', 'class' => 'navbar-form navbar-right','route' => 'search']) }}
+					<div class="col-md-12">
+						@include('{{name}}::search.form')
+					</div>
+				{{ Form::close() }}
+			</div><!-- col-md-3 -->
+		</div>
+	</header>

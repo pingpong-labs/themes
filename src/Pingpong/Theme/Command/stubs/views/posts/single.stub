@@ -1,0 +1,7 @@
+@extends('{{name}}::layouts.full-width')
+
+@section('content')
+	
+	{{ $post->content }}
+
+@endsection

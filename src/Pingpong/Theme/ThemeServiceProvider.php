@@ -32,6 +32,18 @@ class ThemeServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
+		$this->registerServices();
+		$this->registerCommands();
+		$this->registerHelpers();
+	}
+
+	/**
+	 * Register services for this package. 
+	 *
+	 * @return void
+	 */
+	protected function registerServices()
+	{
 		$this->app['theme.finder'] = $this->app->share(function($app)
 		{
 			return new ThemeFinder($app);
@@ -40,6 +52,15 @@ class ThemeServiceProvider extends ServiceProvider {
 		{
 			return new Theme($app);
 		});
+	}
+
+	/**
+	 * Register commands for this package. 
+	 *
+	 * @return void
+	 */
+	protected function registerCommands()
+	{
 		$this->app['theme.generator'] = $this->app->share(function($app)
 		{
 			return new ThemeMakeCommand;
@@ -49,7 +70,6 @@ class ThemeServiceProvider extends ServiceProvider {
 			return new ThemePublishCommand;
 		});
 		$this->commands('theme.generator', 'theme.publisher');
-		$this->registerHelpers();
 	}
 
 	/**

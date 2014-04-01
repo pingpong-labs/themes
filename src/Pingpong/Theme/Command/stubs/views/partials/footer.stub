@@ -1,0 +1,8 @@
+	<!-- Footer -->
+	<footer class="container">
+		&COPY; 2014 {{name}}.
+		All rights reserved.
+		<p class="pull-right back-to-top">
+			Powered by PiNGPONG CMS
+		</p>
+	</footer>
