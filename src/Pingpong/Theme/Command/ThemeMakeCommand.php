@@ -209,15 +209,4 @@ class ThemeMakeCommand extends Command {
 			array('name', InputArgument::REQUIRED, 'Theme name.'),
 		);
 	}
-
-	/**
-	 * Get the console command options.
-	 *
-	 * @return array
-	 */
-	protected function getOptions()
-	{
-		return array();
-	}
-
 }
