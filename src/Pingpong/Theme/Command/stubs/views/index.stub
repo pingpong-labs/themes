@@ -1,6 +1,0 @@
-@extends('{{name}}::layouts.master')
-
-@section('content')
-	<h3>{{name}}</h3>
-	@include('{{name}}::partials.posts')
-@endsection
