@@ -1,0 +1,29 @@
+{
+    "name": "pingpong/themes",
+    "description": "Laravel 4 - Simple Themes",
+    "keywords": ["themes", "theme", "pingpong", "laravel"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pingpong Labs",
+            "email": "gue.warsono@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "4.*",
+        "illuminate/filesystem": "4.*",
+        "illuminate/translators": "4.*",
+        "illuminate/views": "4.*",
+        "illuminate/config": "4.*"
+    },
+    "require-dev": {
+
+    },
+    "autoload": {
+        "psr-0": {
+            "Pingpong\\Themes\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
