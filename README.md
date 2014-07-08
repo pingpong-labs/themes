@@ -4,7 +4,7 @@
 
 Open your composer.json file, and add the new required package.
 ```
-"pingpong/themes": "dev-master"
+    "pingpong/themes": "dev-master"
 ```
 Next, open a terminal and run.
 ```
@@ -14,15 +14,13 @@ composer update
 Next, Add new service provider in `app/config/app.php`.
 
 ```php
-
   'Pingpong\Themes\ThemesServiceProvider',
-
 ```
 
 Next, Add new aliases in `app/config/app.php`.
 
 ```php
-'Theme'      => 'Pingpong\Themes\Facades\Theme',
+    'Theme' => 'Pingpong\Themes\Facades\Theme',
 ```
 
 Next, publish the asset. The asset is an example theme.
@@ -46,16 +44,16 @@ Theme::set('default');
 Theme::setCurrent('default');
 ```
 
-Check theme.
-```
-Theme::has('simple')
-
-Theme::exists('other-theme');
-```
-
 Get current theme active.
 ```php
 Theme::getCurrent();
+```
+
+Check theme.
+```php
+Theme::has('simple')
+
+Theme::exists('other-theme');
 ```
 
 Set theme path.
@@ -75,19 +73,19 @@ Get themes path.
 Theme::getPath();
 ```
 
-Get view for current active theme.
+Get view from current active theme.
 ```php
 Theme::view('index');
 
 Theme::view('folders.view');
 ```
 
-Get config for current active theme.
+Get config from current active theme.
 ```php
 Theme::config('group.name');
 ```
 
-Get lang for current active theme.
+Get lang from current active theme.
 ```php
 Theme::lang('group.name');
 ```
