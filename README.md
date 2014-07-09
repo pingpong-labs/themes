@@ -4,7 +4,7 @@
 
 Open your composer.json file, and add the new required package.
 ```
-    "pingpong/themes": "dev-master"
+   "pingpong/themes": "1.0.*"
 ```
 Next, open a terminal and run.
 ```
@@ -20,7 +20,7 @@ Next, Add new service provider in `app/config/app.php`.
 Next, Add new aliases in `app/config/app.php`.
 
 ```php
-    'Theme' => 'Pingpong\Themes\Facades\Theme',
+   'Theme' => 'Pingpong\Themes\Facades\Theme',
 ```
 
 Next, publish the asset. The asset is an example theme.
@@ -89,7 +89,6 @@ Get lang from current active theme.
 ```php
 Theme::lang('group.name');
 ```
-
 
 ### License
 
