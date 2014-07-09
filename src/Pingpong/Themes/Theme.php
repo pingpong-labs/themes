@@ -61,7 +61,6 @@ class Theme
         $this->config = $config;
         $this->lang = $lang;
         $this->views = $views;
-        $this->current = $this->config->get('themes::default');
     }
 
     /**
@@ -85,7 +84,7 @@ class Theme
      * @param $type
      * @return string
      */
-    public function getNamespacePath($theme, $type)
+    protected function getNamespacePath($theme, $type)
     {
         return $this->getThemePath($theme) . "/{$type}";
     }
@@ -108,7 +107,7 @@ class Theme
      */
     public function getCurrent()
     {
-        return $this->current;
+        return $this->current ?: $this->config->get('themes::default');
     }
 
     /**

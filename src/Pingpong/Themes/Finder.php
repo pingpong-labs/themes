@@ -40,7 +40,6 @@ class Finder
 	{
         $this->files = $files;
         $this->config = $config;
-        $this->path = $this->config->get('themes::path');
     }
 
     /**
@@ -78,7 +77,7 @@ class Finder
      */
     public function getPath()
     {
-        return $this->path;
+        return $this->path ?: $this->config->get('themes::path');
     }
 
     /**
@@ -103,5 +102,25 @@ class Finder
         if( ! $this->has($theme)) return null;
 
         return $this->getPath() . "/{$theme}";
+    }
+
+    /**
+     * Get The Laravel Filesystem.
+     *
+     * @return Filesystem
+     */
+    public function getFiles()
+    {
+        return $this->files;
+    }
+
+    /**
+     * Get The Laravel Config Repository.
+     *
+     * @return Repository
+     */
+    public function getConfig()
+    {
+        return $this->config;
     }
 }
