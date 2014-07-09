@@ -13,12 +13,12 @@
         "php": ">=5.4.0",
         "illuminate/support": "4.*",
         "illuminate/filesystem": "4.*",
-        "illuminate/translators": "4.*",
-        "illuminate/views": "4.*",
+        "illuminate/translation": "4.*",
+        "illuminate/view": "4.*",
         "illuminate/config": "4.*"
     },
     "require-dev": {
-
+        "phpspec/phpspec": "2.0.1"
     },
     "autoload": {
         "psr-0": {
