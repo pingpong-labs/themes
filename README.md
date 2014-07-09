@@ -1,5 +1,7 @@
 ## Laravel 4 - Simple Themes
 
+[![Build Status](https://travis-ci.org/pingpong-labs/themes.svg?branch=master)](https://travis-ci.org/pingpong-labs/themes)
+
 ### Installation
 
 Open your composer.json file, and add the new required package.
