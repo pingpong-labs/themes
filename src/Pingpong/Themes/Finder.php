@@ -3,12 +3,8 @@
 use Illuminate\Config\Repository;
 use Illuminate\Filesystem\Filesystem;
 
-/**
- * Class Finder
- * @package Pingpong\Themes
- */
-class Finder
-{
+class Finder {
+
     /**
      * The Laravel Filesystem.
      *
@@ -50,11 +46,16 @@ class Finder
     public function all()
     {
         $themes = array();
-        $folders = $this->files->directories($this->getPath());
+
+        if( ! $this->files->isDirectory($path = $this->getPath())) return $themes;
+
+        $folders = $this->files->directories($path);
+
         foreach($folders as $theme)
         {
             $themes[] = basename($theme);
         }
+
         return $themes;
     }
 
@@ -67,6 +68,7 @@ class Finder
     public function setPath($path)
     {
         $this->path = $path;
+        
         return $this;
     }
 
@@ -123,4 +125,5 @@ class Finder
     {
         return $this->config;
     }
+    
 }

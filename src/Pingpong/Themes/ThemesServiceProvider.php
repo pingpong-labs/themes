@@ -19,6 +19,7 @@ class ThemesServiceProvider extends ServiceProvider {
 	public function boot()
 	{
         $this->package('pingpong/themes');
+
         $this->registerNamespaces();
     }
 
@@ -27,7 +28,7 @@ class ThemesServiceProvider extends ServiceProvider {
      */
     protected function registerNamespaces()
     {
-        $this->app['pingpong.themes']->registerNamespaces();
+        $this->app['themes']->registerNamespaces();
     }
 
 	/**
@@ -37,7 +38,7 @@ class ThemesServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->app['pingpong.themes'] = $this->app->share(function($app)
+		$this->app['themes'] = $this->app->share(function($app)
 		{
             $finder = new Finder($app['files'], $app['config']);
 
@@ -52,7 +53,7 @@ class ThemesServiceProvider extends ServiceProvider {
 	 */
 	public function provides()
 	{
-		return array('pingpong.themes');
+		return array('themes');
 	}
 
 }

@@ -5,12 +5,8 @@ use Illuminate\Config\Repository;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Translation\Translator;
 
-/**
- * Class Theme
- * @package Pingpong\Themes
- */
-class Theme
-{
+class Theme {
+
     /**
      * The Pingpong Themes Finder Object.
      *

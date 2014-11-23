@@ -2,12 +2,8 @@
 
 use Illuminate\Support\Facades\Facade;
 
-/**
- * Class Theme
- * @package Pingpong\Themes\Facades
- */
-class Theme extends Facade
-{
+class Theme extends Facade {
+
     /**
      * Get Facade Accessor.
      *
@@ -15,6 +11,7 @@ class Theme extends Facade
      */
     protected static function getFacadeAccessor()
 	{
-		return 'pingpong.themes';
+		return 'themes';
 	}
+
 }
