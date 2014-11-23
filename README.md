@@ -1,6 +1,7 @@
-## Laravel 4 - Simple Themes
+## Laravel Themes
 
 [![Build Status](https://travis-ci.org/pingpong-labs/themes.svg?branch=master)](https://travis-ci.org/pingpong-labs/themes)
+[![Latest Stable Version](https://poser.pugx.org/pingpong/themes/v/stable.svg)](https://packagist.org/packages/pingpong/themes) [![Total Downloads](https://poser.pugx.org/pingpong/themes/downloads.svg)](https://packagist.org/packages/pingpong/themes) [![Latest Unstable Version](https://poser.pugx.org/pingpong/themes/v/unstable.svg)](https://packagist.org/packages/pingpong/themes) [![License](https://poser.pugx.org/pingpong/themes/license.svg)](https://packagist.org/packages/pingpong/themes)
 
 ### Installation
 
