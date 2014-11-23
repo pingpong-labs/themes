@@ -23,6 +23,8 @@ class FinderTest extends PHPUnit_Framework_TestCase
         $finder = new Finder($files, $config);
 
         $config->shouldReceive('get')->once()->andReturn($this->getPath());
+
+        $files->shouldReceive('isDirectory')->once()->andReturn(true);        
         $files->shouldReceive('directories')->once()->andReturn(['themes']);
 
         $all = $finder->all();
@@ -40,6 +42,7 @@ class FinderTest extends PHPUnit_Framework_TestCase
         $finder = new Finder($files, $config);
         $finder->setPath($this->getPath());
 
+        $files->shouldReceive('isDirectory')->times(2)->andReturn(true);   
         $files->shouldReceive('directories')->times(2)->andReturn(['default']);
 
         $this->assertTrue($finder->has('default'));
@@ -67,6 +70,8 @@ class FinderTest extends PHPUnit_Framework_TestCase
         $finder = new Finder($files, $config);
 
         $config->shouldReceive('get')->times(3)->andReturn($this->getPath());
+
+        $files->shouldReceive('isDirectory')->times(2)->andReturn(true);
         $files->shouldReceive('directories')->times(2)->andReturn(['default']);
 
         $themePath1 = $finder->getThemePath('default');
