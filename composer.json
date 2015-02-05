@@ -22,8 +22,8 @@
         "mockery/mockery": "0.9.*"
     },
     "autoload": {
-        "psr-0": {
-            "Pingpong\\Themes\\": "src/"
+        "psr-4": {
+            "Pingpong\\Themes\\": ""
         }
     },
     "minimum-stability": "stable"

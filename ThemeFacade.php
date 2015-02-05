@@ -1,8 +1,8 @@
-<?php namespace Pingpong\Themes\Facades;
+<?php namespace Pingpong\Themes;
 
 use Illuminate\Support\Facades\Facade;
 
-class Theme extends Facade {
+class ThemeFacade extends Facade {
 
     /**
      * Get Facade Accessor.
@@ -10,8 +10,8 @@ class Theme extends Facade {
      * @return string
      */
     protected static function getFacadeAccessor()
-	{
-		return 'themes';
-	}
+    {
+        return 'themes';
+    }
 
 }
