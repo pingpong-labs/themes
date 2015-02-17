@@ -4,6 +4,6 @@ return array(
 
     'default'   =>  'default',
 
-	'path'	    =>	public_path('packages/pingpong/themes')
+	'path'	    =>	base_path('themes')
 
 );
