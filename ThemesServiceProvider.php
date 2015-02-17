@@ -18,7 +18,23 @@ class ThemesServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
+        $this->registerConfig();
+
         $this->registerNamespaces();
+    }
+
+    /**
+     * Register configuration file.
+     * 
+     * @return void
+     */
+    protected function registerConfig()
+    {
+        $configPath = __DIR__ . '/src/config/config.php';
+
+        $this->publishes([$configPath => config_path('themes')]);
+        
+        $this->mergeConfigFrom($configPath, 'themes');
     }
 
     /**
