@@ -18,8 +18,6 @@ class ThemesServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
-        $this->package('pingpong/themes', 'themes', __DIR__ . '/src');
-
         $this->registerNamespaces();
     }
 
