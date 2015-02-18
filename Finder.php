@@ -5,29 +5,39 @@ use Symfony\Component\Finder\Finder as SymfonyFinder;
 
 class Finder {
 
-    protected $filename = 'theme.json';
+    /**
+     * The symfony finder instance.
+     * 
+     * @var SymfonyFinder
+     */
+    protected $finder;
 
-    protected $path;
-
-    public function __construct($path, SymfonyFinderSymfonyFinder $finder = null)
-    {
-        $this->path = $path;
-    
+    /**
+     * The constructor.
+     * 
+     * @param $finder SymfonyFinder
+     */
+    public function __construct(SymfonyFinder $finder = null)
+    {    
         $this->finder = $finder ?: new SymfonyFinder;
     }
 
-    public function find()
+    /**
+     * Find the specified theme by searching a 'theme.json' file as identifier.
+     * 
+     * @param  string $path
+     * @param  string $filename
+     * @return array
+     */
+    public function find($path, $filename = 'theme.json')
     {
         $themes = [];
         
-        if(is_dir($path = $this->path))
+        if(is_dir($path))
         {       
-            $found = $this->finder->in($this->path)->files()->name($this->filename)->depth('<= 3')->followLinks();
+            $found = $this->finder->in($path)->files()->name($filename)->depth('<= 3')->followLinks();
 
-            foreach ($found as $file)
-            {
-                $themes[] = $file;
-            }
+            foreach ($found as $file) $themes[] = $file;
         }
 
         return $themes;
