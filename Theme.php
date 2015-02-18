@@ -136,7 +136,7 @@ class Theme {
      */
     public function all()
 	{
-		return $this->finder->all();
+		return $this->finder->find();
 	}
 
     /**

@@ -32,9 +32,9 @@ class ThemesServiceProvider extends ServiceProvider {
     {
         $configPath = __DIR__ . '/src/config/config.php';
 
-        $this->publishes([$configPath => config_path('themes')]);
+        $this->publishes([$configPath => config_path('themes.php')]);
         
-        $this->mergeConfigFrom($configPath, 'themes');
+        $this->mergeConfigFrom($configPath, 'themes.php');
     }
 
     /**
@@ -54,7 +54,9 @@ class ThemesServiceProvider extends ServiceProvider {
     {
         $this->app['themes'] = $this->app->share(function ($app)
         {
-            $finder = new Finder($app['files'], $app['config']);
+            $path = $app['config']->get('themes.path');
+
+            $finder = new Finder($path);
 
             return new Theme($finder, $app['config'], $app['view'], $app['translator']);
         });
