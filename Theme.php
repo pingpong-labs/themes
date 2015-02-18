@@ -103,7 +103,7 @@ class Theme {
      */
     public function getCurrent()
     {
-        return $this->current ?: $this->config->get('themes::default');
+        return $this->current ?: $this->config->get('themes.default');
     }
 
     /**
