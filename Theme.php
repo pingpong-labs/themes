@@ -97,7 +97,7 @@ class Theme {
      */
     public function getThemePath($theme)
     {
-        return $this->finder->getThemePath($theme);
+        return $this->path ."/{$theme}";
     }
 
     /**
@@ -152,7 +152,7 @@ class Theme {
      */
     public function has($theme)
     {
-        return $this->finder->has($theme);
+        return in_array($theme, $this->all());
     }
 
     /**
@@ -174,7 +174,7 @@ class Theme {
      */
     public function setPath($path)
     {
-        return $this->finder->setPath($path);
+        return $this->path = $path;
     }
 
     /**
@@ -184,7 +184,7 @@ class Theme {
      */
     public function getPath()
     {
-        return $this->finder->getPath();
+        return $this->path;
     }
 
     /**
