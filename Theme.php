@@ -66,7 +66,7 @@ class Theme {
     {
         foreach($this->all() as $theme)
         {
-            foreach(array('config', 'views', 'lang') as $hint)
+            foreach(array('views', 'lang') as $hint)
             {
                 $this->{$hint}->addNamespace($theme, $this->getNamespacePath($theme, $hint));
             }
