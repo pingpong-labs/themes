@@ -42,6 +42,10 @@ class Theme {
      */
     protected $current;
 
+    protected $path;
+
+    protected $filename = 'theme.json';
+
     /**
      * The constructor.
      *
@@ -115,6 +119,7 @@ class Theme {
     public function setCurrent($current)
     {
         $this->current = $current;
+
         return $this;
     }
 
@@ -136,7 +141,7 @@ class Theme {
      */
     public function all()
 	{
-		return $this->finder->find();
+		return $this->finder->find($this->path, $this->filename);
 	}
 
     /**
