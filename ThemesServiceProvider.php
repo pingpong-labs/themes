@@ -54,11 +54,7 @@ class ThemesServiceProvider extends ServiceProvider {
     {
         $this->app['themes'] = $this->app->share(function ($app)
         {
-            $path = $app['config']->get('themes.path');
-
-            $finder = new Finder($path);
-
-            return new Theme($finder, $app['config'], $app['view'], $app['translator']);
+            return new Theme(new Finder, $app['config'], $app['view'], $app['translator']);
         });
     }
 
