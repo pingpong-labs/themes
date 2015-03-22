@@ -41,7 +41,7 @@ class Theme {
 
     /**
      * Create new instance.
-     * 
+     *
      * @param array $attributes
      */
     public function __construct(array $attributes = array())
@@ -51,7 +51,7 @@ class Theme {
 
     /**
      * Set attributes.
-     * 
+     *
      * @param array $attributes
      */
     public function setAttributes(array $attributes)
@@ -64,13 +64,16 @@ class Theme {
 
     /**
      * Get theme path.
-     * 
+     *
      * @param  string $hint
      * @return string
      */
     public function getPath($hint = null)
     {
-        if( ! is_null($hint)) return $this->path . '/' . $hint;
+        if ( ! is_null($hint))
+        {
+            return $this->path . '/' . $hint;
+        }
 
         return $this->hint;
     }
@@ -87,7 +90,7 @@ class Theme {
 
     /**
      * Get name as lowercase.
-     * 
+     *
      * @return string
      */
     public function getLowerName()

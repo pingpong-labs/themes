@@ -27,7 +27,7 @@ class ThemesServiceProvider extends ServiceProvider {
 
     /**
      * Register the helpers file.
-     * 
+     *
      * @return void
      */
     public function registerHelpers()
@@ -37,7 +37,7 @@ class ThemesServiceProvider extends ServiceProvider {
 
     /**
      * Register configuration file.
-     * 
+     *
      * @return void
      */
     protected function registerConfig()
@@ -45,7 +45,7 @@ class ThemesServiceProvider extends ServiceProvider {
         $configPath = __DIR__ . '/src/config/config.php';
 
         $this->publishes([$configPath => config_path('themes.php')]);
-        
+
         $this->mergeConfigFrom($configPath, 'themes.php');
     }
 
