@@ -52,7 +52,11 @@ class Finder {
      */
     protected function getInfo($file)
     {
-        return Json::make($file->getRealPath())->toArray();
+        $attributes = Json::make($path = $file->getRealPath())->toArray();
+
+        $attributes['path'] = dirname($path);
+
+        return $attributes;
     }
     
 }
