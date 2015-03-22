@@ -82,9 +82,11 @@ class Repository {
         {
             foreach(array('views', 'lang') as $hint)
             {
-                $path = $this->getNamespacePath($theme->getName(), $hint);
+                $name = $theme->getLowerName();
+
+                $path = $this->getNamespacePath($name, $hint);
                 
-                $this->{$hint}->addNamespace($theme, $path);
+                $this->{$hint}->addNamespace($name, $path);
             }
         }
     }

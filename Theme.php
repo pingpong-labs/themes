@@ -40,6 +40,29 @@ class Theme {
     protected $path;
 
     /**
+     * Create new instance.
+     * 
+     * @param array $attributes
+     */
+    public function __construct(array $attributes = array())
+    {
+        $this->setAttributes($attributes);
+    }
+
+    /**
+     * Set attributes.
+     * 
+     * @param array $attributes
+     */
+    public function setAttributes(array $attributes)
+    {
+        foreach ($attributes as $key => $value)
+        {
+            $this->{$key} = $value;
+        }
+    }
+
+    /**
      * Get name.
      *
      * @return string
@@ -47,6 +70,16 @@ class Theme {
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Get name as lowercase.
+     * 
+     * @return string
+     */
+    public function getLowerName()
+    {
+        return strtolower($this->name);
     }
 
     /**
