@@ -88,6 +88,22 @@ class Repository {
     }
 
     /**
+     * Find the specified theme.
+     * 
+     * @param  string $search
+     * @return \Pingpong\Themes\Theme|null
+     */
+    public function find($search)
+    {
+        foreach ($this->all() as $theme)
+        {
+            if($theme->getLowerName() == strtolower($earch)) return $theme;
+        }
+
+        return null;
+    }
+
+    /**
      * Get theme path by given theme name.
      *
      * @param $theme
