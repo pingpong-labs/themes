@@ -54,7 +54,7 @@ class ThemesServiceProvider extends ServiceProvider {
     {
         $this->app['themes'] = $this->app->share(function ($app)
         {
-            return new Theme(new Finder, $app['config'], $app['view'], $app['translator']);
+            return new Repository(new Finder, $app['config'], $app['view'], $app['translator']);
         });
     }
 
