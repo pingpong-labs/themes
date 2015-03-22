@@ -82,25 +82,9 @@ class Repository {
         {
             foreach(array('views', 'lang') as $hint)
             {
-                $name = $theme->getLowerName();
-
-                $path = $this->getNamespacePath($name, $hint);
-                
-                $this->{$hint}->addNamespace($name, $path);
+                $this->{$hint}->addNamespace($theme->getLowerName(), $theme->getPath($hint));
             }
         }
-    }
-
-    /**
-     * Get path for namespace.
-     *
-     * @param $theme
-     * @param $type
-     * @return string
-     */
-    protected function getNamespacePath($theme, $type)
-    {
-        return $this->getThemePath($theme) . "/{$type}";
     }
 
     /**

@@ -63,6 +63,19 @@ class Theme {
     }
 
     /**
+     * Get theme path.
+     * 
+     * @param  string $hint
+     * @return string
+     */
+    public function getPath($hint = null)
+    {
+        if( ! is_null($hint)) return $this->path . '/' . $hint;
+
+        return $this->hint;
+    }
+
+    /**
      * Get name.
      *
      * @return string
