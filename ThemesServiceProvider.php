@@ -21,6 +21,18 @@ class ThemesServiceProvider extends ServiceProvider {
         $this->registerConfig();
 
         $this->registerNamespaces();
+
+        $this->registerHelpers();
+    }
+
+    /**
+     * Register the helpers file.
+     * 
+     * @return void
+     */
+    public function registerHelpers()
+    {
+        require __DIR__ . '/helpers.php';
     }
 
     /**
