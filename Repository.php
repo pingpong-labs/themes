@@ -96,7 +96,7 @@ class Repository {
     {
         foreach ($this->all() as $theme)
         {
-            if ($theme->getLowerName() == strtolower($earch))
+            if ($theme->getLowerName() == strtolower($search))
             {
                 return $theme;
             }
@@ -168,7 +168,7 @@ class Repository {
      */
     public function has($theme)
     {
-        return in_array($theme, $this->all());
+        return ! is_null($this->find($theme));
     }
 
     /**
