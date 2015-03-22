@@ -1,6 +1,7 @@
 <?php namespace Pingpong\Themes;
 
 use Illuminate\Filesystem\Filesystem;
+use Pingpong\Modules\Json;
 use Symfony\Component\Finder\Finder as SymfonyFinder;
 
 class Finder {
@@ -37,10 +38,21 @@ class Finder {
         {       
             $found = $this->finder->in($path)->files()->name($filename)->depth('<= 3')->followLinks();
 
-            foreach ($found as $file) $themes[] = $file;
+            foreach ($found as $file) $themes[] = new Theme($this->getInfo($file));
         }
 
         return $themes;
+    }
+
+    /**
+     * Get theme info from json file.
+     * 
+     * @param  SplFileInfo $file
+     * @return array
+     */
+    protected function getInfo($file)
+    {
+        return Json::make($file->getRealPath())->toArray();
     }
     
 }

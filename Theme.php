@@ -1,238 +1,178 @@
-<?php namespace Pingpong\Themes;
+<?php
 
-use Illuminate\View\Factory;
-use Illuminate\Config\Repository;
-use Illuminate\Filesystem\Filesystem;
-use Illuminate\Translation\Translator;
+namespace Pingpong\Themes;
 
 class Theme {
 
     /**
-     * The Pingpong Themes Finder Object.
-     *
-     * @var Finder
-     */
-    protected $finder;
-
-    /**
-     * The Laravel Config Repository.
-     *
-     * @var Repository
-     */
-    protected $config;
-
-    /**
-     * The Laravel Translator.
-     *
-     * @var Translator
-     */
-    protected $lang;
-
-    /**
-     * The Laravel View.
-     *
-     * @var Factory
-     */
-    protected $views;
-
-    /**
-     * The current theme active.
+     * Theme name.
      *
      * @var string
      */
-    protected $current;
+    protected $name;
 
+    /**
+     * Theme description.
+     *
+     * @var string
+     */
+    protected $description;
+
+    /**
+     * Author information.
+     *
+     * @var array
+     */
+    protected $author = [];
+
+    /**
+     * Theme status. Enabled (true) or Disabled (false).
+     *
+     * @var boolean
+     */
+    protected $enabled = true;
+
+    /**
+     * The theme path.
+     *
+     * @var string
+     */
     protected $path;
 
-    protected $filename = 'theme.json';
-
     /**
-     * The constructor.
-     *
-     * @param Finder $finder
-     * @param Repository $config
-     * @param Factory $views
-     * @param Translator $lang
-     * @internal param Factory $view
-     */
-    public function __construct(Finder $finder, Repository $config, Factory $views, Translator $lang)
-    {
-        $this->finder = $finder;
-        $this->config = $config;
-        $this->lang = $lang;
-        $this->views = $views;
-    }
-
-    /**
-     * Register the namespaces.
-     */
-    public function registerNamespaces()
-    {
-        foreach($this->all() as $theme)
-        {
-            foreach(array('views', 'lang') as $hint)
-            {
-                $this->{$hint}->addNamespace($theme, $this->getNamespacePath($theme, $hint));
-            }
-        }
-    }
-
-    /**
-     * Get path for namespace.
-     *
-     * @param $theme
-     * @param $type
-     * @return string
-     */
-    protected function getNamespacePath($theme, $type)
-    {
-        return $this->getThemePath($theme) . "/{$type}";
-    }
-
-    /**
-     * Get theme path by given theme name.
-     *
-     * @param $theme
-     * @return null|string
-     */
-    public function getThemePath($theme)
-    {
-        return $this->path ."/{$theme}";
-    }
-
-    /**
-     * Get current theme.
+     * Get name.
      *
      * @return string
      */
-    public function getCurrent()
+    public function getName()
     {
-        return $this->current ?: $this->config->get('themes.default');
+        return $this->name;
     }
 
     /**
-     * Set current theme.
+     * Get description.
      *
-     * @param string $current
-     * @return $this
+     * @return string
      */
-    public function setCurrent($current)
+    public function getDescription()
     {
-        $this->current = $current;
-
-        return $this;
+        return $this->description;
     }
 
     /**
-     * The alias "setCurrent" method.
-     *
-     * @param $theme
-     * @return $this
-     */
-    public function set($theme)
-    {
-        return $this->setCurrent($theme);
-    }
-
-    /**
-     * Get all themes.
+     * Get author info.
      *
      * @return array
      */
-    public function all()
-	{
-		return $this->finder->find($this->path, $this->filename);
-	}
+    public function getAuthor()
+    {
+        return $this->author;
+    }
 
     /**
-     * Check whether the given theme in all themes.
+     * Determine whether this theme is disabled.
      *
-     * @param $theme
      * @return bool
      */
-    public function has($theme)
+    public function disabled()
     {
-        return in_array($theme, $this->all());
+        return ! $this->enabled();
     }
 
     /**
-     * Alias for "has" method.
+     * Determine whether this theme is enabled.
      *
-     * @param $theme
      * @return bool
      */
-    public function exists($theme)
+    public function enabled()
     {
-        return $this->has($theme);
+        return $this->enabled == true;
     }
 
     /**
-     * Set theme path on runtime.
+     * Determine whether the current theme is equal with this theme.
      *
-     * @param $path
-     * @return Finder
+     * @return bool
      */
-    public function setPath($path)
+    public function isActive()
     {
-        return $this->path = $path;
+        return ThemeFacade::getCurrent() == $this->name;
     }
 
     /**
-     * Get theme path.
+     * Get author info.
      *
-     * @return mixed
+     * @param string $type
+     * @param  null $default
+     * @return string|null
      */
-    public function getPath()
+    public function getAuthorInfo($type, $default = null)
     {
-        return $this->path ?: $this->config->get('themes.path');
+        return array_get($this->author, $type, $default);
     }
 
     /**
-     * Get view from current theme.
+     * Get author name.
      *
-     * @param $view
-     * @param array $data
-     * @param array $mergeData
-     * @return mixed
+     * @param null $default
+     * @return string|null
      */
-    public function view($view, $data = array(), $mergeData = array())
+    public function getAuthorName($default = null)
     {
-        return $this->views->make($this->getThemeNamespace($view), $data, $mergeData);
+        return $this->getAuthorInfo('name', $default);
     }
 
     /**
-     * Get config from current theme.
+     * Get author email.
+     *
+     * @param null $default
+     * @return string|null
+     */
+    public function getAuthorEmail($default = null)
+    {
+        return $this->getAuthorInfo('email', $default);
+    }
+
+    /**
+     * Get info from this theme.
      *
      * @param $key
      * @param null $default
      * @return mixed
      */
-    public function config($key, $default = null)
+    public function get($key, $default = null)
     {
-        return $this->config->get($this->getThemeNamespace($key), $default);
+        if (property_exists($this, $key))
+        {
+            return $this->{$key};
+        }
+
+        return $default;
     }
 
     /**
-     * Get lang from current theme.
+     * Handle call to __get method.
      *
      * @param $key
-     * @param array $replace
-     * @param null $locale
-     * @return string
+     * @return mixed
      */
-    public function lang($key, $replace = array(), $locale = null)
+    public function __get($key)
     {
-        return $this->lang->get($this->getThemeNamespace($key), $replace, $locale);
+        return $this->get($key);
     }
 
     /**
-     * Get theme namespace by given key.
+     * Handle call to __set method.
      *
      * @param $key
-     * @return string
+     * @param $value
      */
-    protected function getThemeNamespace($key)
+    public function __set($key, $value)
     {
-        return $this->getCurrent() . "::{$key}";
+        if (property_exists($this, $key))
+        {
+            $this->{$key} = $value;
+        }
     }
+
 }
