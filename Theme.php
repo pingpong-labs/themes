@@ -184,7 +184,7 @@ class Theme {
      */
     public function getPath()
     {
-        return $this->path;
+        return $this->path ?: $this->config->get('themes.path');
     }
 
     /**
