@@ -1,6 +1,6 @@
 <?php namespace Pingpong\Themes;
 
-use Pingpong\Modules\Json;
+use Pingpong\Support\Json;
 use Symfony\Component\Finder\Finder as SymfonyFinder;
 
 class Finder {
