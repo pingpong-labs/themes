@@ -1,10 +1,11 @@
 <?php namespace Pingpong\Themes;
 
 use Illuminate\Config\Repository as Config;
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Translation\Translator;
 use Illuminate\View\Factory;
 
-class Repository {
+class Repository implements Arrayable {
 
     /**
      * The Pingpong Themes Finder Object.
@@ -158,6 +159,19 @@ class Repository {
     public function all()
     {
         return $this->finder->find($this->getPath(), $this->filename);
+    }
+
+    /**
+     * Convert all themes to an array.
+     * 
+     * @return array
+     */
+    public function toArray()
+    {
+        return array_map(function ($theme)
+        {
+            return (array) $theme;
+        }, $this->all());
     }
 
     /**

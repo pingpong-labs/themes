@@ -2,7 +2,9 @@
 
 namespace Pingpong\Themes;
 
-class Theme {
+use Illuminate\Contracts\Support\Arrayable;
+
+class Theme implements Arrayable {
 
     /**
      * Theme name.
@@ -75,7 +77,7 @@ class Theme {
             return $this->path . '/' . $hint;
         }
 
-        return $this->hint;
+        return $this->path;
     }
 
     /**
@@ -222,6 +224,22 @@ class Theme {
         {
             $this->{$key} = $value;
         }
+    }
+
+    /**
+     * Convert theme instance to array.
+     * 
+     * @return array
+     */
+    public function toArray()
+    {
+        return [
+            'name' => $this->name,
+            'description' => $this->description,
+            'author' => $this->author,
+            'enabled' => $this->enabled,
+            'path' => $this->path
+        ];
     }
 
 }
