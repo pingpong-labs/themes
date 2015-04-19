@@ -68,6 +68,18 @@ class ThemesServiceProvider extends ServiceProvider {
         {
             return new Repository(new Finder, $app['config'], $app['view'], $app['translator']);
         });
+
+        $this->registerCommands();
+    }
+
+    /**
+     * Register commands.
+     * 
+     * @return void
+     */
+    protected function registerCommands()
+    {
+        $this->commands('Pingpong\Themes\Console\CacheCommand');
     }
 
     /**
