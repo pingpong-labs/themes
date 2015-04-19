@@ -8,6 +8,7 @@ return array(
 
     'cache' => [
     	'enabled' => true,
+    	'key' => 'pingpong.themes',
     	'lifetime' => 86400,
     ]
 
