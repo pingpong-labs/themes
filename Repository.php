@@ -180,7 +180,7 @@ class Repository implements Arrayable {
     {
         return $this->formatCache($this->cache->get($this->getCacheKey(), []));
     }
-    
+
     /**
      * Determine whether the cache is enabled.
      * 
@@ -237,6 +237,30 @@ class Repository implements Arrayable {
         }
 
         return $themes;
+    }
+
+    /**
+     * Cache the themes.
+     * 
+     * @return void
+     */
+    public function cache()
+    {
+        $this->cache->put(
+            $this->getCacheKey(),
+            $this->toArray(),
+            $this->getCacheLifetime()
+        );
+    }
+
+    /**
+     * Forget cached themes.
+     * 
+     * @return void
+     */
+    public function forgetCache()
+    {
+        $this->cache->forget($this->getCacheKey());
     }
 
     /**

@@ -38,8 +38,8 @@ class CacheCommand extends Command {
 	 */
 	protected function clear()
 	{
-		$this->laravel['cache']->forget($this->laravel['themes']->getCacheKey());
-
+		$this->laravel['themes']->forgetCache();
+		
 		$this->info("Theme cache cleared!");
 	}
 
@@ -50,11 +50,7 @@ class CacheCommand extends Command {
 	 */
 	protected function cache()
 	{
-		$this->laravel['cache']->put(
-			$this->laravel['themes']->getCacheKey(),
-			$this->laravel['themes']->toArray(),
-			$this->laravel['themes']->getCacheLifetime()
-		);
+		$this->laravel['themes']->cache();
 
 		$this->info("Themes cached successfully!");
 	}
