@@ -87,6 +87,7 @@ class ThemesServiceProvider extends ServiceProvider {
     {
         $this->commands('Pingpong\Themes\Console\CacheCommand');
         $this->commands('Pingpong\Themes\Console\ListCommand');
+        $this->commands('Pingpong\Themes\Console\PublishCommand');
     }
 
     /**
