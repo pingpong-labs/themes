@@ -168,6 +168,16 @@ class Repository implements Arrayable {
     {
         if ($this->cached()) return $this->getCached();
 
+        return $this->scan();
+    }
+
+    /**
+     * Get all themes.
+     * 
+     * @return array
+     */
+    public function scan()
+    {
         return $this->finder->find($this->getPath(), $this->filename);
     }
 
