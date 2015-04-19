@@ -283,7 +283,7 @@ class Repository implements Arrayable {
         return array_map(function ($theme)
         {
             return (array) $theme;
-        }, $this->all());
+        }, $this->scan());
     }
 
     /**
