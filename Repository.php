@@ -166,7 +166,7 @@ class Repository implements Arrayable {
      */
     public function all()
     {
-        if ($this->cached()) return $this->getCached();
+        if ($this->useCache()) return $this->getCached();
 
         return $this->scan();
     }
@@ -196,7 +196,7 @@ class Repository implements Arrayable {
      * 
      * @return boolean
      */
-    public function cached()
+    public function useCache()
     {
         return $this->getCacheStatus() == true;
     }
