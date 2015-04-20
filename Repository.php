@@ -228,7 +228,7 @@ class Repository implements Arrayable {
      */
     public function getCacheStatus()
     {
-        return $this->config->get('themes.cache.key');
+        return $this->config->get('themes.cache.enabled');
     }
 
     /**
