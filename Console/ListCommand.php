@@ -39,7 +39,9 @@ class ListCommand extends Command {
 	{
 		$rows = [];
 
-		foreach ($this->laravel['themes']->all() as $theme)
+		$themes = $this->laravel['themes']->all();
+
+		foreach ($themes as $theme)
 		{
 			$rows[] = [
 				$theme->getName(),

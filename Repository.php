@@ -51,13 +51,6 @@ class Repository implements Arrayable {
     protected $path;
 
     /**
-     * The theme identifier.
-     *
-     * @var string
-     */
-    protected $filename = 'theme.json';
-
-    /**
      * The constructor.
      *
      * @param Finder $finder
@@ -178,7 +171,7 @@ class Repository implements Arrayable {
      */
     public function scan()
     {
-        return $this->finder->find($this->getPath(), $this->filename);
+        return $this->finder->setPath($this->getPath())->scan()->getThemes();
     }
 
     /**
