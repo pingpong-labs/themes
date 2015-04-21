@@ -171,7 +171,7 @@ class Repository implements Arrayable {
      */
     public function scan()
     {
-        return $this->finder->setPath($this->getPath())->scan()->getThemes();
+        return $this->finder->find($this->getPath());
     }
 
     /**
