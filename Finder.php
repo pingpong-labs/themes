@@ -115,6 +115,17 @@ class Finder {
     }
 
     /**
+     * Find in path.
+     * 
+     * @param  string $path
+     * @return array
+     */
+    public function find($path)
+    {
+        return $this->setPath($path)->getThemes();
+    }
+
+    /**
      * Get theme info from json file.
      *
      * @param  SplFileInfo $file
