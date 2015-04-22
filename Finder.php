@@ -122,7 +122,7 @@ class Finder {
      */
     public function find($path)
     {
-        return $this->setPath($path)->getThemes();
+        return $this->setPath($path)->scan()->getThemes();
     }
 
     /**
