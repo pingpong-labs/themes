@@ -370,4 +370,24 @@ class Repository implements Arrayable {
     {
         return $this->getCurrent() . "::{$key}";
     }
+
+    /**
+     * Register a view composer to current theme.
+     * 
+     * @param  string|array $views
+     * @param  string|callable $callback
+     * @param  int|null $priority
+     * @return void
+     */
+    public function composer($views, $callback, $priority = null)
+    {
+        $theViews = [];
+        
+        foreach ((array) $views as $view)
+        {
+            $theViews[] = $this->getThemeNamespace($view);
+        }
+
+        $this->views->composer($theViews, $callback, $priority);    
+    }
 }
