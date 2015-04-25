@@ -372,6 +372,17 @@ class Repository implements Arrayable {
     }
 
     /**
+     * Get theme namespace.
+     * 
+     * @param  string $key
+     * @return string
+     */
+    public function getNamespace($key)
+    {
+        return $this->getThemeNamespace($key);
+    }
+
+    /**
      * Register a view composer to current theme.
      * 
      * @param  string|array $views
