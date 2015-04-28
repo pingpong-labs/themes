@@ -232,12 +232,12 @@ class Repository implements Arrayable {
     /**
      * Format for each cached theme to a Theme instance.
      * 
-     * @param  array $cached
+     * @param  array|string $cached
      * @return array
      */
     protected function formatCache($cached)
     {
-        $themes = json_decode($cached, true);
+        $themes = is_array($cached) ? $cached : json_decode($cached, true);
 
         $results = [];
 
