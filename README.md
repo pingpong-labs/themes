@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## Laravel Themes
 
 [![Build Status](https://travis-ci.org/pingpong-labs/themes.svg?branch=master)](https://travis-ci.org/pingpong-labs/themes)
@@ -96,3 +97,9 @@ Theme::lang('group.name');
 ### License
 
 This package is open-sourced software licensed under [The BSD 3-Clause License](http://opensource.org/licenses/BSD-3-Clause)
+=======
+Laravel Themes
+==============
+
+Official documentation is located [here](http://sky.pingpong-labs.com/docs/2.0/themes)
+>>>>>>> 2.0

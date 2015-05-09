@@ -18,9 +18,35 @@ class ThemesServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
-        $this->package('pingpong/themes', 'themes', __DIR__ . '/src');
+        $this->registerConfig();
 
         $this->registerNamespaces();
+
+        $this->registerHelpers();
+    }
+
+    /**
+     * Register the helpers file.
+     *
+     * @return void
+     */
+    public function registerHelpers()
+    {
+        require __DIR__ . '/helpers.php';
+    }
+
+    /**
+     * Register configuration file.
+     *
+     * @return void
+     */
+    protected function registerConfig()
+    {
+        $configPath = __DIR__ . '/src/config/config.php';
+
+        $this->publishes([$configPath => config_path('themes.php')]);
+
+        $this->mergeConfigFrom($configPath, 'themes.php');
     }
 
     /**
@@ -40,10 +66,28 @@ class ThemesServiceProvider extends ServiceProvider {
     {
         $this->app['themes'] = $this->app->share(function ($app)
         {
-            $finder = new Finder($app['files'], $app['config']);
-
-            return new Theme($finder, $app['config'], $app['view'], $app['translator']);
+            return new Repository(
+                new Finder,
+                $app['config'],
+                $app['view'],
+                $app['translator'],
+                $app['cache.store']
+            );
         });
+
+        $this->registerCommands();
+    }
+
+    /**
+     * Register commands.
+     * 
+     * @return void
+     */
+    protected function registerCommands()
+    {
+        $this->commands('Pingpong\Themes\Console\CacheCommand');
+        $this->commands('Pingpong\Themes\Console\ListCommand');
+        $this->commands('Pingpong\Themes\Console\PublishCommand');
     }
 
     /**

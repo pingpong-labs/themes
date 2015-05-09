@@ -2,8 +2,14 @@
 
 return array(
 
-    'default'   =>  'default',
+    'default' => 'default',
+    
+    'path' => base_path('resources/themes'),
 
-	'path'	    =>	public_path('packages/pingpong/themes')
+    'cache' => [
+    	'enabled' => true,
+    	'key' => 'pingpong.themes',
+    	'lifetime' => 86400,
+    ]
 
 );

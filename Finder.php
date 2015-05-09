@@ -1,129 +1,143 @@
 <?php namespace Pingpong\Themes;
 
-use Illuminate\Config\Repository;
-use Illuminate\Filesystem\Filesystem;
+use Pingpong\Support\Json;
+use Symfony\Component\Finder\Finder as SymfonyFinder;
 
 class Finder {
 
     /**
-     * The Laravel Filesystem.
+     * The symfony finder instance.
      *
-     * @var Filesystem
+     * @var SymfonyFinder
      */
-    protected $files;
+    protected $finder;
 
     /**
-     * The Laravel Config Repository.
-     *
-     * @var Repository
+     * The array of themes.
+     * 
+     * @var array
      */
-    protected $config;
+    protected $themes = [];
 
     /**
-     * The current theme path.
-     *
+     * Determinte whether the theme has been scanned or not.
+     * 
+     * @var boolean
+     */
+    protected $scanned = false;
+
+    /**
+     * The scanned path.
+     * 
      * @var string
      */
     protected $path;
 
     /**
+     * The filename of theme's identifier.
+     *
+     * @var string
+     */
+    const FILENAME = 'theme.json';
+
+    /**
      * The constructor.
      *
-     * @param Filesystem $files
-     * @param Repository $config
+     * @param $finder SymfonyFinder
      */
-    public function __construct(Filesystem $files, Repository $config)
-	{
-        $this->files = $files;
-        $this->config = $config;
-    }
-
-    /**
-     * Get all themes.
-     *
-     * @return array
-     */
-    public function all()
+    public function __construct(SymfonyFinder $finder = null)
     {
-        $themes = array();
-
-        if( ! $this->files->isDirectory($path = $this->getPath())) return $themes;
-
-        $folders = $this->files->directories($path);
-
-        foreach($folders as $theme)
-        {
-            $themes[] = basename($theme);
-        }
-
-        return $themes;
+        $this->finder = $finder ?: new SymfonyFinder;
     }
 
     /**
-     * Set theme path.
-     *
-     * @param $path
-     * @return self
+     * Set path.
+     * 
+     * @param  string $path
+     * @return $this
      */
     public function setPath($path)
     {
         $this->path = $path;
-        
+
         return $this;
     }
 
     /**
-     * Get theme path.
-     *
+     * Get path.
+     * 
      * @return string
      */
     public function getPath()
     {
-        return $this->path ?: $this->config->get('themes::path');
+        return $this->path;
     }
 
     /**
-     * Check whether the given theme in all themes.
+     * Find the specified theme by searching a 'theme.json' file as identifier.
      *
-     * @param $theme
-     * @return bool
+     * @param  string $path
+     * @param  string $filename
+     * @return $this
      */
-    public function has($theme)
+    public function scan()
     {
-        return in_array($theme, $this->all());
+        if ($this->scanned == true) return $this;
+
+        if (is_dir($path = $this->getPath()))
+        {
+            $found = $this->finder
+                ->in($path)
+                ->files()
+                ->name(self::FILENAME)
+                ->depth('<= 3')
+                ->followLinks();
+
+            foreach ($found as $file)
+            {
+                $this->themes[] = new Theme($this->getInfo($file));
+            }
+        }
+
+        $this->scanned = true;
+
+        return $this;
     }
 
     /**
-     * Get theme path by given theme name.
-     *
-     * @param $theme
-     * @return null|string
+     * Get themes.
+     * 
+     * @return array
      */
-    public function getThemePath($theme)
+    public function getThemes()
     {
-        if( ! $this->has($theme)) return null;
-
-        return $this->getPath() . "/{$theme}";
+        return $this->themes;
     }
 
     /**
-     * Get The Laravel Filesystem.
-     *
-     * @return Filesystem
+     * Find in path.
+     * 
+     * @param  string $path
+     * @return array
      */
-    public function getFiles()
+    public function find($path)
     {
-        return $this->files;
+        return $this->setPath($path)->scan()->getThemes();
     }
 
     /**
-     * Get The Laravel Config Repository.
+     * Get theme info from json file.
      *
-     * @return Repository
+     * @param  SplFileInfo $file
+     * @return array
      */
-    public function getConfig()
+    protected function getInfo($file)
     {
-        return $this->config;
+        $attributes = Json::make($path = $file->getRealPath())->toArray();
+
+        $attributes['path'] = dirname($path);
+
+        return $attributes;
     }
-    
+
 }
