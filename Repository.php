@@ -6,7 +6,8 @@ use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Translation\Translator;
 use Illuminate\View\Factory;
 
-class Repository implements Arrayable {
+class Repository implements Arrayable
+{
 
     /**
      * The Pingpong Themes Finder Object.
@@ -65,8 +66,7 @@ class Repository implements Arrayable {
         Factory $views,
         Translator $lang,
         Cache $cache
-    )
-    {
+    ) {
         $this->finder = $finder;
         $this->config = $config;
         $this->lang = $lang;
@@ -79,10 +79,8 @@ class Repository implements Arrayable {
      */
     public function registerNamespaces()
     {
-        foreach ($this->all() as $theme)
-        {
-            foreach (array('views', 'lang') as $hint)
-            {
+        foreach ($this->all() as $theme) {
+            foreach (array('views', 'lang') as $hint) {
                 $this->{$hint}->addNamespace($theme->getLowerName(), $theme->getPath($hint));
             }
         }
@@ -96,10 +94,8 @@ class Repository implements Arrayable {
      */
     public function find($search)
     {
-        foreach ($this->all() as $theme)
-        {
-            if ($theme->getLowerName() == strtolower($search))
-            {
+        foreach ($this->all() as $theme) {
+            if ($theme->getLowerName() == strtolower($search)) {
                 return $theme;
             }
         }
@@ -159,14 +155,16 @@ class Repository implements Arrayable {
      */
     public function all()
     {
-        if ($this->useCache()) return $this->getCached();
+        if ($this->useCache()) {
+            return $this->getCached();
+        }
 
         return $this->scan();
     }
 
     /**
      * Get all themes.
-     * 
+     *
      * @return array
      */
     public function scan()
@@ -176,7 +174,7 @@ class Repository implements Arrayable {
 
     /**
      * Get cached themes.
-     * 
+     *
      * @return array
      */
     public function getCached()
@@ -191,7 +189,7 @@ class Repository implements Arrayable {
 
     /**
      * Determine whether the cache is enabled.
-     * 
+     *
      * @return boolean
      */
     public function useCache()
@@ -201,7 +199,7 @@ class Repository implements Arrayable {
 
     /**
      * Get cache key.
-     * 
+     *
      * @return string
      */
     public function getCacheKey()
@@ -211,7 +209,7 @@ class Repository implements Arrayable {
 
     /**
      * Get cache lifetime.
-     * 
+     *
      * @return int
      */
     public function getCacheLifetime()
@@ -221,7 +219,7 @@ class Repository implements Arrayable {
 
     /**
      * Get cache status.
-     * 
+     *
      * @return boolean
      */
     public function getCacheStatus()
@@ -231,7 +229,7 @@ class Repository implements Arrayable {
 
     /**
      * Format for each cached theme to a Theme instance.
-     * 
+     *
      * @param  array|string $cached
      * @return array
      */
@@ -241,8 +239,7 @@ class Repository implements Arrayable {
 
         $results = [];
 
-        foreach ($themes as $theme)
-        {
+        foreach ($themes as $theme) {
             $results[] = new Theme($theme);
         }
 
@@ -251,7 +248,7 @@ class Repository implements Arrayable {
 
     /**
      * Cache the themes.
-     * 
+     *
      * @return void
      */
     public function cache()
@@ -265,7 +262,7 @@ class Repository implements Arrayable {
 
     /**
      * Forget cached themes.
-     * 
+     *
      * @return void
      */
     public function forgetCache()
@@ -275,20 +272,19 @@ class Repository implements Arrayable {
 
     /**
      * Convert all themes to an array.
-     * 
+     *
      * @return array
      */
     public function toArray()
     {
-        return array_map(function ($theme)
-        {
+        return array_map(function ($theme) {
             return $theme->toArray();
         }, $this->scan());
     }
 
     /**
      * Convert all themes to a json string.
-     * 
+     *
      * @return string
      */
     public function toJson()
@@ -390,7 +386,7 @@ class Repository implements Arrayable {
 
     /**
      * Get theme namespace.
-     * 
+     *
      * @param  string $key
      * @return string
      */
@@ -401,7 +397,7 @@ class Repository implements Arrayable {
 
     /**
      * Register a view composer to current theme.
-     * 
+     *
      * @param  string|array $views
      * @param  string|callable $callback
      * @param  int|null $priority
@@ -411,11 +407,10 @@ class Repository implements Arrayable {
     {
         $theViews = [];
         
-        foreach ((array) $views as $view)
-        {
+        foreach ((array) $views as $view) {
             $theViews[] = $this->getThemeNamespace($view);
         }
 
-        $this->views->composer($theViews, $callback, $priority);    
+        $this->views->composer($theViews, $callback, $priority);
     }
 }

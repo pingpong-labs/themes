@@ -7,9 +7,9 @@ return array(
     'path' => base_path('resources/themes'),
 
     'cache' => [
-    	'enabled' => true,
-    	'key' => 'pingpong.themes',
-    	'lifetime' => 86400,
+        'enabled' => true,
+        'key' => 'pingpong.themes',
+        'lifetime' => 86400,
     ]
 
 );

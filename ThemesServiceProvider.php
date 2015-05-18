@@ -2,7 +2,8 @@
 
 use Illuminate\Support\ServiceProvider;
 
-class ThemesServiceProvider extends ServiceProvider {
+class ThemesServiceProvider extends ServiceProvider
+{
 
     /**
      * Indicates if loading of the provider is deferred.
@@ -64,8 +65,7 @@ class ThemesServiceProvider extends ServiceProvider {
      */
     public function register()
     {
-        $this->app['themes'] = $this->app->share(function ($app)
-        {
+        $this->app['themes'] = $this->app->share(function ($app) {
             return new Repository(
                 new Finder,
                 $app['config'],
@@ -80,7 +80,7 @@ class ThemesServiceProvider extends ServiceProvider {
 
     /**
      * Register commands.
-     * 
+     *
      * @return void
      */
     protected function registerCommands()
@@ -99,5 +99,4 @@ class ThemesServiceProvider extends ServiceProvider {
     {
         return array('themes');
     }
-
 }

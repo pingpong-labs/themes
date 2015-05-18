@@ -4,7 +4,8 @@ namespace Pingpong\Themes;
 
 use Illuminate\Contracts\Support\Arrayable;
 
-class Theme implements Arrayable {
+class Theme implements Arrayable
+{
 
     /**
      * Theme name.
@@ -58,8 +59,7 @@ class Theme implements Arrayable {
      */
     public function setAttributes(array $attributes)
     {
-        foreach ($attributes as $key => $value)
-        {
+        foreach ($attributes as $key => $value) {
             $this->{$key} = $value;
         }
     }
@@ -72,8 +72,7 @@ class Theme implements Arrayable {
      */
     public function getPath($hint = null)
     {
-        if ( ! is_null($hint))
-        {
+        if (! is_null($hint)) {
             return $this->path . '/' . $hint;
         }
 
@@ -193,8 +192,7 @@ class Theme implements Arrayable {
      */
     public function get($key, $default = null)
     {
-        if (property_exists($this, $key))
-        {
+        if (property_exists($this, $key)) {
             return $this->{$key};
         }
 
@@ -220,15 +218,14 @@ class Theme implements Arrayable {
      */
     public function __set($key, $value)
     {
-        if (property_exists($this, $key))
-        {
+        if (property_exists($this, $key)) {
             $this->{$key} = $value;
         }
     }
 
     /**
      * Convert theme instance to array.
-     * 
+     *
      * @return array
      */
     public function toArray()
@@ -241,5 +238,4 @@ class Theme implements Arrayable {
             'path' => $this->path
         ];
     }
-
 }

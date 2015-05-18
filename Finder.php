@@ -3,7 +3,8 @@
 use Pingpong\Support\Json;
 use Symfony\Component\Finder\Finder as SymfonyFinder;
 
-class Finder {
+class Finder
+{
 
     /**
      * The symfony finder instance.
@@ -14,21 +15,21 @@ class Finder {
 
     /**
      * The array of themes.
-     * 
+     *
      * @var array
      */
     protected $themes = [];
 
     /**
      * Determinte whether the theme has been scanned or not.
-     * 
+     *
      * @var boolean
      */
     protected $scanned = false;
 
     /**
      * The scanned path.
-     * 
+     *
      * @var string
      */
     protected $path;
@@ -52,7 +53,7 @@ class Finder {
 
     /**
      * Set path.
-     * 
+     *
      * @param  string $path
      * @return $this
      */
@@ -65,7 +66,7 @@ class Finder {
 
     /**
      * Get path.
-     * 
+     *
      * @return string
      */
     public function getPath()
@@ -82,10 +83,11 @@ class Finder {
      */
     public function scan()
     {
-        if ($this->scanned == true) return $this;
+        if ($this->scanned == true) {
+            return $this;
+        }
 
-        if (is_dir($path = $this->getPath()))
-        {
+        if (is_dir($path = $this->getPath())) {
             $found = $this->finder
                 ->in($path)
                 ->files()
@@ -93,8 +95,7 @@ class Finder {
                 ->depth('<= 3')
                 ->followLinks();
 
-            foreach ($found as $file)
-            {
+            foreach ($found as $file) {
                 $this->themes[] = new Theme($this->getInfo($file));
             }
         }
@@ -106,7 +107,7 @@ class Finder {
 
     /**
      * Get themes.
-     * 
+     *
      * @return array
      */
     public function getThemes()
@@ -116,7 +117,7 @@ class Finder {
 
     /**
      * Find in path.
-     * 
+     *
      * @param  string $path
      * @return array
      */
@@ -139,5 +140,4 @@ class Finder {
 
         return $attributes;
     }
-
 }

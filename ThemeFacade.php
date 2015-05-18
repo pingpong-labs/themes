@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Facade;
 
-class ThemeFacade extends Facade {
+class ThemeFacade extends Facade
+{
 
     /**
      * Get Facade Accessor.
@@ -13,5 +14,4 @@ class ThemeFacade extends Facade {
     {
         return 'themes';
     }
-
 }

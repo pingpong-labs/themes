@@ -1,7 +1,6 @@
 <?php
 
-if ( ! function_exists('theme'))
-{
+if (! function_exists('theme')) {
     /**
      * Return a specified view from current theme.
      *
