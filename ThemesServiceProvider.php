@@ -85,6 +85,7 @@ class ThemesServiceProvider extends ServiceProvider
      */
     protected function registerCommands()
     {
+        $this->commands('Pingpong\Themes\Console\MakeCommand');
         $this->commands('Pingpong\Themes\Console\CacheCommand');
         $this->commands('Pingpong\Themes\Console\ListCommand');
         $this->commands('Pingpong\Themes\Console\PublishCommand');
