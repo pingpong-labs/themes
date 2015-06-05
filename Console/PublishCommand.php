@@ -37,6 +37,11 @@ class PublishCommand extends Command
         $this->publishAll();
     }
 
+    /**
+     * Publish all themes.
+     * 
+     * @return void
+     */
     protected function publishAll()
     {
         foreach ($this->laravel['themes']->all() as $theme) {
@@ -44,6 +49,12 @@ class PublishCommand extends Command
         }
     }
 
+    /**
+     * Publish theme.
+     * 
+     * @param  mixed $theme
+     * @return void
+     */
     protected function publish($theme)
     {
         $theme = $theme instanceof Theme ? $theme : $this->laravel['themes']->find($theme);
@@ -59,6 +70,11 @@ class PublishCommand extends Command
         }
     }
 
+    /**
+     * Get the console command arguments.
+     * 
+     * @return array
+     */
     public function getArguments()
     {
         return [
