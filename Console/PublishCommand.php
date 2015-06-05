@@ -75,7 +75,7 @@ class PublishCommand extends Command
      * 
      * @return array
      */
-    public function getArguments()
+    protected function getArguments()
     {
         return [
             ['name', InputArgument::OPTIONAL, 'The name of the theme being used.'],
