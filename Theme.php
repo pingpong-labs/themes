@@ -6,7 +6,6 @@ use Illuminate\Contracts\Support\Arrayable;
 
 class Theme implements Arrayable
 {
-
     /**
      * Theme name.
      *
@@ -31,7 +30,7 @@ class Theme implements Arrayable
     /**
      * Theme status. Enabled (true) or Disabled (false).
      *
-     * @var boolean
+     * @var bool
      */
     protected $enabled = true;
 
@@ -67,13 +66,14 @@ class Theme implements Arrayable
     /**
      * Get theme path.
      *
-     * @param  string $hint
+     * @param string $hint
+     *
      * @return string
      */
     public function getPath($hint = null)
     {
-        if (! is_null($hint)) {
-            return $this->path . '/' . $hint;
+        if (!is_null($hint)) {
+            return $this->path.'/'.$hint;
         }
 
         return $this->path;
@@ -126,7 +126,7 @@ class Theme implements Arrayable
      */
     public function disabled()
     {
-        return ! $this->enabled();
+        return !$this->enabled();
     }
 
     /**
@@ -153,7 +153,8 @@ class Theme implements Arrayable
      * Get author info.
      *
      * @param string $type
-     * @param  null $default
+     * @param null   $default
+     *
      * @return string|null
      */
     public function getAuthorInfo($type, $default = null)
@@ -165,6 +166,7 @@ class Theme implements Arrayable
      * Get author name.
      *
      * @param null $default
+     *
      * @return string|null
      */
     public function getAuthorName($default = null)
@@ -176,6 +178,7 @@ class Theme implements Arrayable
      * Get author email.
      *
      * @param null $default
+     *
      * @return string|null
      */
     public function getAuthorEmail($default = null)
@@ -188,6 +191,7 @@ class Theme implements Arrayable
      *
      * @param $key
      * @param null $default
+     *
      * @return mixed
      */
     public function get($key, $default = null)
@@ -203,6 +207,7 @@ class Theme implements Arrayable
      * Handle call to __get method.
      *
      * @param $key
+     *
      * @return mixed
      */
     public function __get($key)
@@ -235,7 +240,7 @@ class Theme implements Arrayable
             'description' => $this->description,
             'author' => $this->author,
             'enabled' => $this->enabled,
-            'path' => $this->path
+            'path' => $this->path,
         ];
     }
 }

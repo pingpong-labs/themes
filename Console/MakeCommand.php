@@ -9,7 +9,6 @@ use Symfony\Component\Console\Input\InputOption;
 
 class MakeCommand extends Command
 {
-
     /**
      * Command name.
      *
@@ -26,15 +25,14 @@ class MakeCommand extends Command
 
     /**
      * Execute command.
-     *
-     * @return void
      */
     public function fire()
     {
         $name = strtolower($this->argument('name'));
 
-        if ($this->laravel['themes']->has($name) && ! $this->option('force')) {
+        if ($this->laravel['themes']->has($name) && !$this->option('force')) {
             $this->error('Theme already exists.');
+
             return;
         }
 
@@ -43,26 +41,25 @@ class MakeCommand extends Command
 
     /**
      * Generate a new theme by given theme name.
-     * 
-     * @param  string $name
-     * @return void
+     *
+     * @param string $name
      */
     protected function generate($name)
     {
-        $themePath = config('themes.path') . '/' . $name;
+        $themePath = config('themes.path').'/'.$name;
 
-        $this->laravel['files']->copyDirectory(__DIR__ . '/stubs/theme', $themePath);
+        $this->laravel['files']->copyDirectory(__DIR__.'/stubs/theme', $themePath);
 
-        Stub::createFromPath(__DIR__ . '/stubs/json.stub', compact('name'))
+        Stub::createFromPath(__DIR__.'/stubs/json.stub', compact('name'))
             ->saveTo($themePath, 'theme.json')
         ;
 
-        $this->info("Theme created successfully.");
+        $this->info('Theme created successfully.');
     }
 
     /**
      * Get the console command arguments.
-     * 
+     *
      * @return array
      */
     protected function getArguments()
@@ -74,7 +71,7 @@ class MakeCommand extends Command
 
     /**
      * Get the console command options.
-     * 
+     *
      * @return array
      */
     protected function getOptions()

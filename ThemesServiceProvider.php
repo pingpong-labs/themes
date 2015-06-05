@@ -1,10 +1,11 @@
-<?php namespace Pingpong\Themes;
+<?php
+
+namespace Pingpong\Themes;
 
 use Illuminate\Support\ServiceProvider;
 
 class ThemesServiceProvider extends ServiceProvider
 {
-
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -14,8 +15,6 @@ class ThemesServiceProvider extends ServiceProvider
 
     /**
      * Bootstrap the application events.
-     *
-     * @return void
      */
     public function boot()
     {
@@ -28,22 +27,18 @@ class ThemesServiceProvider extends ServiceProvider
 
     /**
      * Register the helpers file.
-     *
-     * @return void
      */
     public function registerHelpers()
     {
-        require __DIR__ . '/helpers.php';
+        require __DIR__.'/helpers.php';
     }
 
     /**
      * Register configuration file.
-     *
-     * @return void
      */
     protected function registerConfig()
     {
-        $configPath = __DIR__ . '/src/config/config.php';
+        $configPath = __DIR__.'/src/config/config.php';
 
         $this->publishes([$configPath => config_path('themes.php')]);
 
@@ -60,14 +55,12 @@ class ThemesServiceProvider extends ServiceProvider
 
     /**
      * Register the service provider.
-     *
-     * @return void
      */
     public function register()
     {
         $this->app['themes'] = $this->app->share(function ($app) {
             return new Repository(
-                new Finder,
+                new Finder(),
                 $app['config'],
                 $app['view'],
                 $app['translator'],
@@ -80,8 +73,6 @@ class ThemesServiceProvider extends ServiceProvider
 
     /**
      * Register commands.
-     *
-     * @return void
      */
     protected function registerCommands()
     {

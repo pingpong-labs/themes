@@ -8,7 +8,6 @@ use Symfony\Component\Console\Input\InputArgument;
 
 class PublishCommand extends Command
 {
-
     /**
      * Command name.
      *
@@ -25,8 +24,6 @@ class PublishCommand extends Command
 
     /**
      * Execute command.
-     *
-     * @return void
      */
     public function fire()
     {
@@ -39,8 +36,6 @@ class PublishCommand extends Command
 
     /**
      * Publish all themes.
-     * 
-     * @return void
      */
     protected function publishAll()
     {
@@ -51,28 +46,27 @@ class PublishCommand extends Command
 
     /**
      * Publish theme.
-     * 
-     * @param  mixed $theme
-     * @return void
+     *
+     * @param mixed $theme
      */
     protected function publish($theme)
     {
         $theme = $theme instanceof Theme ? $theme : $this->laravel['themes']->find($theme);
 
-        if (! is_null($theme)) {
+        if (!is_null($theme)) {
             $assetsPath = $theme->getPath('assets');
 
             $destinationPath = public_path('themes/'.$theme->getLowerName());
-            
+
             $this->laravel['files']->copyDirectory($assetsPath, $destinationPath);
-            
+
             $this->line("Asset published from: <info>{$theme->getName()}</info>");
         }
     }
 
     /**
      * Get the console command arguments.
-     * 
+     *
      * @return array
      */
     protected function getArguments()

@@ -6,7 +6,6 @@ use Illuminate\Console\Command;
 
 class CacheCommand extends Command
 {
-
     /**
      * Command name.
      *
@@ -23,8 +22,6 @@ class CacheCommand extends Command
 
     /**
      * Execute command.
-     *
-     * @return void
      */
     public function fire()
     {
@@ -34,25 +31,21 @@ class CacheCommand extends Command
 
     /**
      * Clear cached themes.
-     *
-     * @return void
      */
     protected function clear()
     {
         $this->laravel['themes']->forgetCache();
-        
-        $this->info("Theme cache cleared!");
+
+        $this->info('Theme cache cleared!');
     }
 
     /**
      * Cache the themes.
-     *
-     * @return void
      */
     protected function cache()
     {
         $this->laravel['themes']->cache();
 
-        $this->info("Themes cached successfully!");
+        $this->info('Themes cached successfully!');
     }
 }

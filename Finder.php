@@ -1,11 +1,12 @@
-<?php namespace Pingpong\Themes;
+<?php
+
+namespace Pingpong\Themes;
 
 use Pingpong\Support\Json;
 use Symfony\Component\Finder\Finder as SymfonyFinder;
 
 class Finder
 {
-
     /**
      * The symfony finder instance.
      *
@@ -23,7 +24,7 @@ class Finder
     /**
      * Determinte whether the theme has been scanned or not.
      *
-     * @var boolean
+     * @var bool
      */
     protected $scanned = false;
 
@@ -48,13 +49,14 @@ class Finder
      */
     public function __construct(SymfonyFinder $finder = null)
     {
-        $this->finder = $finder ?: new SymfonyFinder;
+        $this->finder = $finder ?: new SymfonyFinder();
     }
 
     /**
      * Set path.
      *
-     * @param  string $path
+     * @param string $path
+     *
      * @return $this
      */
     public function setPath($path)
@@ -77,8 +79,9 @@ class Finder
     /**
      * Find the specified theme by searching a 'theme.json' file as identifier.
      *
-     * @param  string $path
-     * @param  string $filename
+     * @param string $path
+     * @param string $filename
+     *
      * @return $this
      */
     public function scan()
@@ -118,7 +121,8 @@ class Finder
     /**
      * Find in path.
      *
-     * @param  string $path
+     * @param string $path
+     *
      * @return array
      */
     public function find($path)
@@ -129,7 +133,8 @@ class Finder
     /**
      * Get theme info from json file.
      *
-     * @param  SplFileInfo $file
+     * @param SplFileInfo $file
+     *
      * @return array
      */
     protected function getInfo($file)

@@ -6,7 +6,6 @@ use Illuminate\Console\Command;
 
 class ListCommand extends Command
 {
-
     /**
      * Command name.
      *
@@ -23,8 +22,6 @@ class ListCommand extends Command
 
     /**
      * Execute command.
-     *
-     * @return void
      */
     public function fire()
     {
