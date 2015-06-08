@@ -227,8 +227,12 @@ class Theme implements Arrayable
      */
     public function boot()
     {
-        foreach ($this->getFiles() as $file) {
-            require $this->path . '/' . $file;
+        foreach ($this->getFiles() as $filename) {
+            $path = $this->path . '/' . $filename;
+            
+            if (file_exists($path)) {
+                require $path;
+            };
         }
     }
 
@@ -291,7 +295,7 @@ class Theme implements Arrayable
 
         $path = $this->path . "/config/config.php";
 
-        if ( ! file_exists($path)) {
+        if (! file_exists($path)) {
             $path = $this->path . "/config/{$filename}.php";
         }
 
