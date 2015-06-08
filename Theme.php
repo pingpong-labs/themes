@@ -42,6 +42,13 @@ class Theme implements Arrayable
     protected $path;
 
     /**
+     * Get the theme's files.
+     * 
+     * @var array
+     */
+    protected $files = [];
+
+    /**
      * Create new instance.
      *
      * @param array $attributes
@@ -204,6 +211,28 @@ class Theme implements Arrayable
     }
 
     /**
+     * Get theme files.
+     * 
+     * @return void
+     */
+    public function getFiles()
+    {
+        return $this->get('files', []);
+    }
+
+    /**
+     * Boot the theme.
+     * 
+     * @return void
+     */
+    public function boot()
+    {
+        foreach ($this->getFiles() as $file) {
+            require $this->path . '/' . $file;
+        }
+    }
+
+    /**
      * Handle call to __get method.
      *
      * @param $key
@@ -241,6 +270,7 @@ class Theme implements Arrayable
             'author' => $this->author,
             'enabled' => $this->enabled,
             'path' => $this->path,
+            'files' => $this->files,
         ];
     }
 }

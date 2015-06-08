@@ -85,6 +85,8 @@ class Repository implements Arrayable
             foreach (array('views', 'lang') as $hint) {
                 $this->{$hint}->addNamespace($theme->getLowerName(), $theme->getPath($hint));
             }
+
+            $theme->boot();
         }
     }
 
