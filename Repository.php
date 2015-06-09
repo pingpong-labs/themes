@@ -5,6 +5,7 @@ namespace Pingpong\Themes;
 use Illuminate\Cache\Repository as Cache;
 use Illuminate\Config\Repository as Config;
 use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Support\Str;
 use Illuminate\Translation\Translator;
 use Illuminate\View\Factory;
 
@@ -85,6 +86,8 @@ class Repository implements Arrayable
             foreach (array('views', 'lang') as $hint) {
                 $this->{$hint}->addNamespace($theme->getLowerName(), $theme->getPath($hint));
             }
+
+            $theme->boot();
         }
     }
 
@@ -365,7 +368,16 @@ class Repository implements Arrayable
      */
     public function config($key, $default = null)
     {
-        return $this->config->get($this->getThemeNamespace($key), $default);
+        if (Str::contains($key, '::')) {
+            list($theme, $config) = explode('::', $key);
+        } else {
+            $theme = $this->getCurrent();
+            $config = $key;
+        }
+
+        $theme = $this->find($theme);
+
+        return $theme ? $theme->config($config) : $default;
     }
 
     /**

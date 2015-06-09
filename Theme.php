@@ -42,6 +42,13 @@ class Theme implements Arrayable
     protected $path;
 
     /**
+     * Get the theme's files.
+     *
+     * @var array
+     */
+    protected $files = [];
+
+    /**
      * Create new instance.
      *
      * @param array $attributes
@@ -204,6 +211,32 @@ class Theme implements Arrayable
     }
 
     /**
+     * Get theme files.
+     *
+     * @return void
+     */
+    public function getFiles()
+    {
+        return $this->get('files', []);
+    }
+
+    /**
+     * Boot the theme.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        foreach ($this->getFiles() as $filename) {
+            $path = $this->path . '/' . $filename;
+            
+            if (file_exists($path)) {
+                require $path;
+            };
+        }
+    }
+
+    /**
      * Handle call to __get method.
      *
      * @param $key
@@ -241,6 +274,35 @@ class Theme implements Arrayable
             'author' => $this->author,
             'enabled' => $this->enabled,
             'path' => $this->path,
+            'files' => $this->files,
         ];
+    }
+
+    /**
+     * Get theme's config value.
+     *
+     * @param  string $key
+     * @param  string|null $default
+     * @return string|null
+     */
+    public function config($key, $default = null)
+    {
+        $parts = explode('.', $key);
+
+        $filename = head($parts);
+
+        $parts = array_slice($parts, 0);
+
+        $path = $this->path . "/config/config.php";
+
+        if (! file_exists($path)) {
+            $path = $this->path . "/config/{$filename}.php";
+        }
+
+        $key = implode('.', $parts);
+
+        $config = file_exists($path) ? require $path : [];
+
+        return array_get($config, $key, $default);
     }
 }

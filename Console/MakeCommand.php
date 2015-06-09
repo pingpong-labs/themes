@@ -54,6 +54,10 @@ class MakeCommand extends Command
             ->saveTo($themePath, 'theme.json')
         ;
 
+        Stub::createFromPath(__DIR__.'/stubs/theme.stub')
+            ->saveTo($themePath, 'theme.php')
+        ;
+
         $this->info('Theme created successfully.');
     }
 
