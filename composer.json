@@ -16,11 +16,11 @@
   ],
   "require": {
     "php": ">=5.4.0",
-    "illuminate/support": "5.1.*@dev",
-    "illuminate/filesystem": "5.1.*@dev",
-    "illuminate/translation": "5.1.*@dev",
-    "illuminate/view": "5.1.*@dev",
-    "illuminate/config": "5.1.*@dev",
+    "illuminate/support": "5.1.*",
+    "illuminate/filesystem": "5.1.*",
+    "illuminate/translation": "5.1.*",
+    "illuminate/view": "5.1.*",
+    "illuminate/config": "5.1.*",
     "pingpong/support": "2.0.*@dev"
   },
   "require-dev": {
