@@ -327,11 +327,13 @@ class Repository implements Arrayable
      *
      * @param $path
      *
-     * @return Finder
+     * @return self
      */
     public function setPath($path)
     {
-        return $this->path = $path;
+        $this->path = $path;
+
+        return $this;
     }
 
     /**
