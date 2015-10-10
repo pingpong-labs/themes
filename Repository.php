@@ -361,6 +361,20 @@ class Repository implements Arrayable
     }
 
     /**
+     * Register view location of theme.
+     *
+     * @param null $theme
+     */
+    public function registerViewLocation($theme = null)
+    {
+        if (is_null($theme)) {
+            $theme = $this->getCurrent();
+        }
+
+        $this->views->addLocation($this->getPath() . '/' . $theme . '/views');
+    }
+
+    /**
      * Get config from current theme.
      *
      * @param $key
