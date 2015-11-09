@@ -370,7 +370,7 @@ class Repository implements Arrayable
      */
     public function asset($asset, $secure = null) 
     {
-        return app('url')->asset(config('app.url') . '/themes/' . $this->getCurrent() . '/' . $asset, $secure);
+        return url('/themes/' . $this->getCurrent() . '/' . $asset, null, $secure);
     }
     
     /**
@@ -382,7 +382,7 @@ class Repository implements Arrayable
      */
     public function secure_asset($asset)
     {
-        return app('url')->asset(config('app.url') . '/themes/' . $this->getCurrent() . '/' . $asset);
+        return $this->asset($asset, true);
     }
     
     /**
