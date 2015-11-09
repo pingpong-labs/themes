@@ -370,7 +370,7 @@ class Repository implements Arrayable
      */
     public function asset($asset, $secure = null) 
     {
-        return url('/themes/' . $this->getCurrent() . '/' . $asset, null, $secure);
+        return url('themes/' . $this->getCurrent() . '/' . $asset, null, $secure);
     }
     
     /**
