@@ -118,7 +118,7 @@ class Repository implements Arrayable
      */
     public function getThemePath($theme)
     {
-        return $this->path."/{$theme}";
+        return $this->getPath() . "/{$theme}";
     }
 
     /**
@@ -359,32 +359,32 @@ class Repository implements Arrayable
     {
         return $this->views->make($this->getThemeNamespace($view), $data, $mergeData);
     }
-    
+
     /**
      * Get asset for theme
-     * 
+     *
      * @param $asset
      * @param $secure
-     * 
+     *
      * @return asset
      */
-    public function asset($asset, $secure = null) 
+    public function asset($asset, $secure = null)
     {
-        return app('url')->asset(config('app.url') . '/themes/' . $this->getCurrent() . '/' . $asset, $secure);
+        return url('themes/' . $this->getCurrent() . '/' . $asset, null, $secure);
     }
-    
+
     /**
      * Get secure asset
-     * 
+     *
      * @param $asset
-     * 
+     *
      * @return asset
      */
     public function secure_asset($asset)
     {
-        return app('url')->asset(config('app.url') . '/themes/' . $this->getCurrent() . '/' . $asset);
+        return $this->asset($asset, true);
     }
-    
+
     /**
      * Register view location of theme.
      *
