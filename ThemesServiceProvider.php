@@ -3,6 +3,7 @@
 namespace Pingpong\Themes;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\FileViewFinder;
 
 class ThemesServiceProvider extends ServiceProvider
 {
@@ -69,6 +70,26 @@ class ThemesServiceProvider extends ServiceProvider
         });
 
         $this->registerCommands();
+
+        $this->overrideViewPath();
+    }
+
+    /**
+     * Override view path.
+     */
+    protected function overrideViewPath()
+    {
+        $this->app->bind('view.finder', function ($app) {
+            $defaultThemePath = $app['config']['themes.path'].'/'.$app['config']['themes.default'].'/views';
+
+            if (is_dir($defaultThemePath)) {
+                $paths = [$defaultThemePath];
+            } else {
+                $paths = $app['config']['view.paths'];
+            }
+
+            return new FileViewFinder($app['files'], $paths);
+        });
     }
 
     /**
