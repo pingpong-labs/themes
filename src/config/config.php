@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
 
     'default' => 'default',
 
@@ -12,4 +12,4 @@ return array(
         'lifetime' => 86400,
     ],
 
-);
+];
