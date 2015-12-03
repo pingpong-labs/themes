@@ -165,7 +165,9 @@ class Repository implements Arrayable
     public function all()
     {
         if ($this->useCache()) {
-            return $this->getCached();
+            return $this->cache->remember($this->getCacheKey(), $this->getCacheLifetime(), function () {
+                return $this->scan();
+            });
         }
 
         return $this->scan();
@@ -188,12 +190,7 @@ class Repository implements Arrayable
      */
     public function getCached()
     {
-        $cached = $this->cache->get(
-            $this->getCacheKey(),
-            []
-        );
-
-        return $this->formatCache($cached);
+        return $this->cache->get($this->getCacheKey(), []);
     }
 
     /**
@@ -237,35 +234,13 @@ class Repository implements Arrayable
     }
 
     /**
-     * Format for each cached theme to a Theme instance.
-     *
-     * @param array|string $cached
-     *
-     * @return array
-     */
-    protected function formatCache($cached)
-    {
-        $themes = is_array($cached) ? $cached : json_decode($cached, true);
-
-        $results = [];
-
-        foreach ($themes as $theme) {
-            $results[] = new Theme($theme);
-        }
-
-        return $results;
-    }
-
-    /**
      * Cache the themes.
      */
     public function cache()
     {
-        $this->cache->put(
-            $this->getCacheKey(),
-            $this->toJson(),
-            $this->getCacheLifetime()
-        );
+        $this->cache->remember($this->getCacheKey(), $this->getCacheLifetime(), function () {
+            return $this->scan();
+        });
     }
 
     /**
