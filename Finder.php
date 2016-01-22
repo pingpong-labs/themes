@@ -95,7 +95,7 @@ class Finder
                 ->in($path)
                 ->files()
                 ->name(self::FILENAME)
-                ->depth('<= 3')
+                ->depth('== 1')
                 ->followLinks();
 
             foreach ($found as $file) {

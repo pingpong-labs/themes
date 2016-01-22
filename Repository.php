@@ -60,6 +60,7 @@ class Repository implements Arrayable
      * @param Config     $config
      * @param Factory    $views
      * @param Translator $lang
+     * @param Cache      $cache
      *
      * @internal param Factory $view
      */
