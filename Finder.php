@@ -133,7 +133,7 @@ class Finder
     /**
      * Get theme info from json file.
      *
-     * @param SplFileInfo $file
+     * @param \SplFileInfo $file
      *
      * @return array
      */
