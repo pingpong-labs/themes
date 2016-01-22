@@ -43,7 +43,7 @@ class ThemesServiceProvider extends ServiceProvider
 
         $this->publishes([$configPath => config_path('themes.php')]);
 
-        $this->mergeConfigFrom($configPath, 'themes.php');
+        $this->mergeConfigFrom($configPath, 'themes');
     }
 
     /**
