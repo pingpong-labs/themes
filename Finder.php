@@ -95,7 +95,7 @@ class Finder
                 ->in($path)
                 ->files()
                 ->name(self::FILENAME)
-                ->depth('<= 3')
+                ->depth('== 1')
                 ->followLinks();
 
             foreach ($found as $file) {
@@ -133,7 +133,7 @@ class Finder
     /**
      * Get theme info from json file.
      *
-     * @param SplFileInfo $file
+     * @param \SplFileInfo $file
      *
      * @return array
      */
